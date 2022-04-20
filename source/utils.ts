@@ -1,5 +1,6 @@
+import cx from 'classnames'
 import type { CSSProperties } from "react";
-import type { AnimateHeightProps } from "./types.js";
+import type { AnimateHeightProps, AnimationStateClasses } from "./types.js";
 
 export function omit(obj: object, ...keys: string[]) {
   if (!keys.length) {
@@ -121,4 +122,16 @@ export function getTimings(
   prefersReduced: boolean
 ) {
   return prefersReduced ? { delay: 0, duration: 0 } : { delay, duration };
+}
+
+export function getStaticStateClasses(
+  height: string | number,
+  animationStateClasses: AnimationStateClasses
+): string {
+  return cx({
+    [animationStateClasses.static]: true,
+    [animationStateClasses.staticHeightZero]: height === 0,
+    [animationStateClasses.staticHeightSpecific]: height > 0,
+    [animationStateClasses.staticHeightAuto]: height === "auto",
+  });
 }

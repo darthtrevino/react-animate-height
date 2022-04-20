@@ -12,13 +12,14 @@ import {
   isAriaHidden,
   getContentStyle,
   getTimings,
+  getStaticStateClasses,
 } from "./utils.js";
 import { ANIMATION_STATE_CLASSES, PROPS_TO_OMIT } from "./constants.js";
 import type { AnimateHeightProps } from "./types.js";
 import { attachPropTypes } from "./attachPropTypes";
 
 interface AnimateHeightState {
-  animationStateClasses?: Record<string, string> | string;
+  animationStateClass?: string;
   height?: string | number;
   overflow?: string;
   shouldUseTransitions?: boolean;
@@ -48,9 +49,12 @@ class AnimateHeight extends React.Component<
       ...props.animationStateClasses,
     };
 
-    const animationStateClasses = this.getStaticStateClasses(height);
+    const animationStateClass = getStaticStateClasses(
+      height,
+      this.animationStateClasses
+    );
     this.state = {
-      animationStateClasses,
+      animationStateClass,
       height,
       overflow,
       shouldUseTransitions: false,
@@ -130,7 +134,7 @@ class AnimateHeight extends React.Component<
       }
 
       // Animation classes
-      const animationStateClasses = cx({
+      const animationStateClass = cx({
         [this.animationStateClasses.animating]: true,
         [this.animationStateClasses.animatingUp]:
           prevProps.height === "auto" || height < prevProps.height,
@@ -145,8 +149,9 @@ class AnimateHeight extends React.Component<
       });
 
       // Animation classes to be put after animation is complete
-      const timeoutAnimationStateClasses = this.getStaticStateClasses(
-        timeoutState.height
+      const timeoutAnimationStateClass = getStaticStateClasses(
+        timeoutState.height,
+        this.animationStateClasses
       );
 
       // Set starting height and animating classes
@@ -154,7 +159,7 @@ class AnimateHeight extends React.Component<
       // because of the "height !== prevProps.height" check
       this.setState({
         // eslint-disable-line react/no-did-update-set-state
-        animationStateClasses,
+        animationStateClass,
         height: newHeight,
         overflow: "hidden",
         // When animating from 'auto' we first need to set fixed height
@@ -182,7 +187,7 @@ class AnimateHeight extends React.Component<
         // Set static classes and remove transitions when animation ends
         this.animationClassesTimeoutID = setTimeout(() => {
           this.setState({
-            animationStateClasses: timeoutAnimationStateClasses,
+            animationStateClass: timeoutAnimationStateClass,
             shouldUseTransitions: false,
           });
 
@@ -198,7 +203,7 @@ class AnimateHeight extends React.Component<
 
         // Set end height, classes and remove transitions when animation is complete
         this.timeoutID = setTimeout(() => {
-          timeoutState.animationStateClasses = timeoutAnimationStateClasses;
+          timeoutState.animationStateClass = timeoutAnimationStateClass;
           timeoutState.shouldUseTransitions = false;
 
           this.setState(timeoutState);
@@ -224,15 +229,6 @@ class AnimateHeight extends React.Component<
     clearTimeout(this.animationClassesTimeoutID);
 
     this.timeoutID = null;
-  }
-
-  getStaticStateClasses(height) {
-    return cx({
-      [this.animationStateClasses.static]: true,
-      [this.animationStateClasses.staticHeightZero]: height === 0,
-      [this.animationStateClasses.staticHeightSpecific]: height > 0,
-      [this.animationStateClasses.staticHeightAuto]: height === "auto",
-    });
   }
 
   showContent(height) {
@@ -261,7 +257,7 @@ class AnimateHeight extends React.Component<
       duration: durationProp,
       "aria-hidden": ariaHiddenProp,
     } = this.props;
-    const { height, overflow, animationStateClasses, shouldUseTransitions } =
+    const { height, overflow, animationStateClass, shouldUseTransitions } =
       this.state;
 
     const { duration, delay } = getTimings(
@@ -297,7 +293,7 @@ class AnimateHeight extends React.Component<
     );
 
     const componentClasses = cx({
-      [animationStateClasses as string]: true,
+      [animationStateClass]: true,
       [className]: className,
     });
 
