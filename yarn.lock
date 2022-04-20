@@ -51,6 +51,57 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@darthtrevino/react-animate-height@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@darthtrevino/react-animate-height@workspace:."
+  dependencies:
+    "@swc/cli": ^0.1.57
+    "@swc/core": ^1.2.168
+    "@types/events": ^3
+    "@types/mini-css-extract-plugin": ^2
+    "@types/node": ^17.0.25
+    "@types/prop-types": ^15.7.5
+    "@types/react": ^16.14.25
+    "@typescript-eslint/eslint-plugin": ^5.20.0
+    "@typescript-eslint/parser": ^5.20.0
+    classnames: ^2.3.1
+    css-loader: ^6.7.1
+    eslint: ^8.13.0
+    eslint-config-airbnb: ^19.0.4
+    eslint-config-prettier: ^8.5.0
+    eslint-plugin-import: ^2.26.0
+    eslint-plugin-jsx-a11y: ^6.5.1
+    eslint-plugin-react: ^7.29.4
+    events: ^3.3.0
+    extract-text-webpack-plugin: ^3.0.2
+    html-webpack-plugin: ^5.5.0
+    mini-css-extract-plugin: ^2.6.0
+    npm-run-all: ^4.1.5
+    postcss-loader: ^6.2.1
+    prettier: ^2.6.2
+    prop-types: ^15.8.1
+    react: ^18.0.0
+    react-dom: ^18.0.0
+    style-loader: ^3.3.1
+    swc-loader: ^0.2.0
+    typescript: ^4.6.3
+    webpack: ^5.72.0
+    webpack-cli: ^4.9.2
+    webpack-dev-server: ^4.8.1
+  peerDependencies:
+    "@types/prop-types": ">15"
+    "@types/react": ">16"
+    react: ">=15.6.2"
+  peerDependenciesMeta:
+    "@types/prop-types":
+      optional: true
+    "@types/react":
+      optional: true
+    react:
+      optional: false
+  languageName: unknown
+  linkType: soft
+
 "@discoveryjs/json-ext@npm:^0.5.0":
   version: 0.5.7
   resolution: "@discoveryjs/json-ext@npm:0.5.7"
@@ -4679,57 +4730,6 @@ __metadata:
   checksum: d2961fa3c71c9c22dc2c3fd60ff377bf36dfed7d7a748f2b25d585934a3e9df565bb9aa5bc2e3a716ea941f4bc2a6ddc795c8b0cf7219fb071029b59b1985394
   languageName: node
   linkType: hard
-
-"react-animate-height@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "react-animate-height@workspace:."
-  dependencies:
-    "@swc/cli": ^0.1.57
-    "@swc/core": ^1.2.168
-    "@types/events": ^3
-    "@types/mini-css-extract-plugin": ^2
-    "@types/node": ^17.0.25
-    "@types/prop-types": ^15.7.5
-    "@types/react": ^16.14.25
-    "@typescript-eslint/eslint-plugin": ^5.20.0
-    "@typescript-eslint/parser": ^5.20.0
-    classnames: ^2.3.1
-    css-loader: ^6.7.1
-    eslint: ^8.13.0
-    eslint-config-airbnb: ^19.0.4
-    eslint-config-prettier: ^8.5.0
-    eslint-plugin-import: ^2.26.0
-    eslint-plugin-jsx-a11y: ^6.5.1
-    eslint-plugin-react: ^7.29.4
-    events: ^3.3.0
-    extract-text-webpack-plugin: ^3.0.2
-    html-webpack-plugin: ^5.5.0
-    mini-css-extract-plugin: ^2.6.0
-    npm-run-all: ^4.1.5
-    postcss-loader: ^6.2.1
-    prettier: ^2.6.2
-    prop-types: ^15.8.1
-    react: ^18.0.0
-    react-dom: ^18.0.0
-    style-loader: ^3.3.1
-    swc-loader: ^0.2.0
-    typescript: ^4.6.3
-    webpack: ^5.72.0
-    webpack-cli: ^4.9.2
-    webpack-dev-server: ^4.8.1
-  peerDependencies:
-    "@types/prop-types": ">15"
-    "@types/react": ">16"
-    react: ">=15.6.2"
-  peerDependenciesMeta:
-    "@types/prop-types":
-      optional: true
-    "@types/react":
-      optional: true
-    react:
-      optional: false
-  languageName: unknown
-  linkType: soft
 
 "react-dom@npm:^18.0.0":
   version: 18.0.0
