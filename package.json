@@ -1,6 +1,6 @@
 {
   "name": "@essex/react-animate-height",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Lightweight React component for animating height using CSS transitions.",
   "main": "lib/AnimateHeight.js",
   "types": "lib/index.d.ts",
