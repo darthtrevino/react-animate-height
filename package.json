@@ -1,5 +1,5 @@
 {
-  "name": "react-animate-height",
+  "name": "@darthtrevino/react-animate-height",
   "version": "2.1.2",
   "description": "Lightweight React component for animating height using CSS transitions.",
   "main": "lib/AnimateHeight.js",
