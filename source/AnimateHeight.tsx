@@ -13,6 +13,8 @@ import {
   getContentStyle,
   getTimings,
   getStaticStateClasses,
+  showContent,
+  hideContent,
 } from "./utils.js";
 import { ANIMATION_STATE_CLASSES, PROPS_TO_OMIT } from "./constants.js";
 import type { AnimateHeightProps } from "./types.js";
@@ -68,7 +70,7 @@ class AnimateHeight extends React.Component<
     // Check for contentElement is added cause this would fail in tests (react-test-renderer)
     // Read more here: https://github.com/Stanko/react-animate-height/issues/17
     if (this.contentElement && this.contentElement.style) {
-      this.hideContent(height);
+      hideContent(height, this.contentElement);
     }
   }
 
@@ -91,7 +93,7 @@ class AnimateHeight extends React.Component<
     if (this.contentElement && height !== prevProps.height) {
       // Remove display: none from the content div
       // if it was hidden to prevent tabbing into it
-      this.showContent(prevState.height);
+      showContent(prevState.height, this.contentElement);
 
       // Cache content height
       this.contentElement.style.overflow = "hidden";
@@ -193,7 +195,7 @@ class AnimateHeight extends React.Component<
 
           // ANIMATION ENDS
           // Hide content if height is 0 (to prevent tabbing into it)
-          this.hideContent(timeoutState.height);
+          hideContent(timeoutState.height, this.contentElement);
           // Run a callback if it exists
           runCallback(onAnimationEnd, { newHeight: timeoutState.height });
         }, totalDuration);
@@ -213,7 +215,7 @@ class AnimateHeight extends React.Component<
           // (case when element is empty, therefore height is 0)
           if (height !== "auto") {
             // Hide content if height is 0 (to prevent tabbing into it)
-            this.hideContent(newHeight); // TODO solve newHeight = 0
+            hideContent(newHeight, this.contentElement); // TODO solve newHeight = 0
           }
           // Run a callback if it exists
           runCallback(onAnimationEnd, { newHeight });
@@ -229,18 +231,6 @@ class AnimateHeight extends React.Component<
     clearTimeout(this.animationClassesTimeoutID);
 
     this.timeoutID = null;
-  }
-
-  showContent(height) {
-    if (height === 0) {
-      this.contentElement.style.display = "";
-    }
-  }
-
-  hideContent(newHeight) {
-    if (newHeight === 0) {
-      this.contentElement.style.display = "none";
-    }
   }
 
   render() {

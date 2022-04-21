@@ -135,3 +135,17 @@ export function getStaticStateClasses(
     [animationStateClasses.staticHeightAuto]: height === "auto",
   });
 }
+
+export function showContent(height: string | number, contentElement: HTMLDivElement) {
+  if (height === 0) {
+    // eslint-disable-next-line no-param-reassign
+    contentElement.style.display = "";
+  }
+}
+
+export function hideContent(height: string | number, contentElement: HTMLDivElement) {
+  if (height === 0) {
+    // eslint-disable-next-line no-param-reassign
+    contentElement.style.display = "none";
+  }
+}
